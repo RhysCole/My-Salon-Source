@@ -1,0 +1,55 @@
+@theme {
+    --animate-bounce-slow: bounce-slow 2s infinite alternate;
+    --animate-text-color: text-color 10s ease infinite;
+
+    @keyframes bounce-slow {
+        0% {
+            transform: translateY(0);
+        }
+        to {
+            transform: translateY(-12px);
+        }
+    }
+
+    @keyframes text-color {
+        0% {
+            background-position: 0 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0 50%;
+        }
+    }
+}
+
+.animated-text {
+    @apply animate-text-color;
+    background-size: 400% 400%;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Add this to the bottom of animation.css */
+
+/* Replace the old marquee rules with this in animation.css */
+
+@keyframes marquee-with-pause {
+  /* The text is visible and paused for the first 25% of the animation time */
+  0% { transform: translateX(0); }
+  25% { transform: translateX(0); }
+
+  /* The text scrolls completely to the left over the next 50% of the animation time */
+  75% { transform: translateX(-100%); }
+
+  /* The text stays hidden off-screen for the final 25% to complete the loop */
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: 200%;
+  /* Adjust the duration to control speed. 12s total means a 3s pause (25% of 12) */
+  animation: marquee-with-pause 12s linear infinite;
+}
